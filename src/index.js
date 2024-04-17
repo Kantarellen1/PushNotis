@@ -24,5 +24,12 @@ const colRef = collection(db, "accepted")
   // get collection data
 getDocs(colRef)
   .then((snapshot) => {
-    console.log(snapshot.docs)
+    let accepted = []
+    snapshot.docs.forEach((doc) => {
+      accepted.push({ ...doc.data(), id: doc.id })
+    })
+    console.log(accepted)
+  })
+  .catch(err => {
+    console.log(err.message)
   })
